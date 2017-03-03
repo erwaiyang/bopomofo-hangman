@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.hot.js",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "mocha"
   },
   "repository": {
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/erwaiyang/bopomofo-hangman#readme",
   "devDependencies": {
+    "@kadira/storybook": "^2.35.3",
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.3.2",
