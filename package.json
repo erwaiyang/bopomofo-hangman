@@ -4,6 +4,7 @@
   "description": "Hangman game for Chinese characters (using Bopomofo)",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --config webpack.config.hot.js",
     "test": "mocha"
   },
   "repository": {
