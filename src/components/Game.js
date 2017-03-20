@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-  <div>
-    <h1>My App</h1>
+  <div id="game">
+    <h2>遊戲頁面</h2>
   </div>
 );

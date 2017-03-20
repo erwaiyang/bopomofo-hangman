@@ -7,6 +7,7 @@ module.exports = {
       'react',
       'react-dom',
       'redux',
+      'react-redux',
       'redux-saga',
     ],
     app: [
