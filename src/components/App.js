@@ -2,15 +2,17 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Header, Button } from 'semantic-ui-react';
 import { GET_STARTED, YOU_WIN, YOU_LOST } from '../constants/actionTypes';
+import { getStarted } from '../actions/gameActions';
 import Game from './Game';
 
-function App({ status }) {
+function App(props) {
+  const { status } = props;
   return (
     <div id="app">
       <Header as="h1">注音吊死鬼</Header>
       {
         status === 'INIT' &&
-          <Button primary>開始遊戲</Button>
+          <Button primary onClick={() => props.getStarted()}>開始遊戲</Button>
         ||
         status === GET_STARTED &&
           <Game />
@@ -21,6 +23,7 @@ function App({ status }) {
 
 App.propTypes = {
   status: PropTypes.string.isRequired,
+  getStarted: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ gameStore }) {
@@ -29,4 +32,4 @@ function mapStateToProps({ gameStore }) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { getStarted })(App);
