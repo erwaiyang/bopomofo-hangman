@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import styled from 'styled-components';
+import indexOf from 'lodash/indexOf';
 import BopomofoFrame from './BopomofoFrame';
+import { accents } from '../constants/parameters';
 
 const StyledChar = styled.div`
   display: inline-block;
@@ -12,6 +14,9 @@ const StyledChar = styled.div`
   .char {
     font-size: 2rem;
     margin-right: 1rem;
+  }
+  .bopomofos {
+    width: 5rem;
   }
 `;
 
@@ -29,6 +34,7 @@ function Char({ char, record, original }) {
                 <BopomofoFrame
                   key={originalBopomofo.charAt(0).toString(16)}
                   b={b === '*' ? originalBopomofo : ' '}
+                  isAccent={indexOf(accents, originalBopomofo) > 0}
                 />
               );
             })
