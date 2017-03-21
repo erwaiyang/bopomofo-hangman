@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import indexOf from 'lodash/indexOf';
 import BopomofoFrame from './BopomofoFrame';
@@ -48,6 +48,7 @@ Char.propTypes = {
   char: PropTypes.string.isRequired,
   record: PropTypes.string.isRequired,
   original: PropTypes.string.isRequired,
+  showAnswer: PropTypes.bool.isRequired,
 };
 
 export default Char;
