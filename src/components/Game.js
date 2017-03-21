@@ -5,17 +5,19 @@ import Char from './Char';
 import Hangman from './Hangman';
 import Controls from './Controls';
 
-function Game({ answer, bopomofo }) {
+function Game({ answer, bopomofoString, bopomofoGuessRecord }) {
+  const record = bopomofoGuessRecord.split(',');
   return (
     <div id="game">
       <Container>
         <div id="chars">
           {
-            answer.split('').map((char, index) =>
+            bopomofoString.split(',').map((item, index) =>
               <Char
-                key={char.toString(16) + index}
-                char={char}
-                bopomofos={bopomofo[index]}
+                key={answer[index].toString(16) + index}
+                char={answer[index]}
+                record={record[index]}
+                original={item}
               />)
           }
         </div>
@@ -28,13 +30,15 @@ function Game({ answer, bopomofo }) {
 
 Game.propTypes = {
   answer: PropTypes.string.isRequired,
-  bopomofo: PropTypes.arrayOf(PropTypes.string).isRequired,
+  bopomofoString: PropTypes.string.isRequired,
+  bopomofoGuessRecord: PropTypes.string.isRequired,
 };
 
 function mapStateToProps({ gameStore: { question } }) {
   return {
     answer: question.answer,
-    bopomofo: question.bopomofo,
+    bopomofoGuessRecord: question.bopomofoGuessRecord,
+    bopomofoString: question.bopomofoString,
   };
 }
 

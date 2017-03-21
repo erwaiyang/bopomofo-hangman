@@ -15,30 +15,33 @@ const StyledChar = styled.div`
   }
 `;
 
-class Char extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const { char, bopomofos } = this.props;
-    return (
-      <StyledChar>
-        <div className="char">{char}</div>
-        <div className="bopomofos">
-          {
-            bopomofos
-              .split('')
-              .map(b => <BopomofoFrame key={b.charAt(0).toString(16)} b={b} />)
-          }
-        </div>
-      </StyledChar>
-    );
-  }
+function Char({ char, record, original }) {
+  return (
+    <StyledChar>
+      <div className="char">?</div>
+      <div className="bopomofos">
+        {
+          record
+            .split('')
+            .map((b, index) => {
+              const originalBopomofo = original[index];
+              return (
+                <BopomofoFrame
+                  key={originalBopomofo.charAt(0).toString(16)}
+                  b={b === '*' ? originalBopomofo : ' '}
+                />
+              );
+            })
+        }
+      </div>
+    </StyledChar>
+  );
 }
 
 Char.propTypes = {
   char: PropTypes.string.isRequired,
-  bopomofos: PropTypes.string.isRequired,
+  record: PropTypes.string.isRequired,
+  original: PropTypes.string.isRequired,
 };
 
 export default Char;

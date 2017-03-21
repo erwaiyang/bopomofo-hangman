@@ -1,8 +1,10 @@
 import sample from 'lodash/sample';
+import replace from 'lodash/replace';
 import {
   GET_STARTED,
   YOU_WIN,
   YOU_LOST,
+  GUESS,
 } from '../constants/actionTypes';
 import testList from '../../data/testList';
 
@@ -23,7 +25,7 @@ export default function gameReducer(state = initialization, action) {
         step: initialization.step,
         incorrect: initialization.incorrect,
         guessed: initialization.guessed,
-        question: sample(testList),
+        question: getQuestion(testList),
       };
     case YOU_WIN:
       return {
@@ -35,7 +37,33 @@ export default function gameReducer(state = initialization, action) {
         ...state,
         status: YOU_LOST,
       };
+    case GUESS:
+      const newRecord = getGuessResult(state.question.bopomofoGuessRecord, action.bopomofo);
+      return {
+        ...state,
+        question: {
+          ...state.question,
+          bopomofoGuessRecord: newRecord,
+        },
+        guessed: [...state.guessed, action.bopomofo],
+        step: newRecord === state.question.bopomofoGuessRecord ? (state.step + 1) : state.step,
+      };
     default:
       return state;
   }
+}
+
+function getQuestion(list) {
+  const question = sample(list);
+  const bopomofoString = question.bopomofo.toString();
+  const bopomofoGuessRecord = bopomofoString.toString();
+  return {
+    answer: question.answer,
+    bopomofoString,
+    bopomofoGuessRecord,
+  };
+}
+
+function getGuessResult(bopomofoString, guessedBopomofo) {
+  return replace(bopomofoString, new RegExp(guessedBopomofo, 'g'), '*');
 }
