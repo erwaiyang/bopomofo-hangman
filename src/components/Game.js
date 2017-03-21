@@ -1,7 +1,10 @@
 import React from 'react';
+import { Container } from 'semantic-ui-react';
 
 export default () => (
   <div id="game">
-    <h2>遊戲頁面</h2>
+    <Container>
+      <h2>遊戲頁面</h2>
+    </Container>
   </div>
 );

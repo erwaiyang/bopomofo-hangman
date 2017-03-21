@@ -1,12 +1,15 @@
+import sample from 'lodash/sample';
 import {
   GET_STARTED,
   YOU_WIN,
   YOU_LOST,
 } from '../constants/actionTypes';
+import testList from '../../data/testList';
 
 export const initialization = {
   status: 'INIT',
   step: 0,
+  question: null,
   incorrect: [],
 };
 
@@ -18,6 +21,7 @@ export default function gameReducer(state = initialization, action) {
         status: GET_STARTED,
         step: initialization.step,
         incorrect: initialization.incorrect,
+        question: sample(testList),
       };
     case YOU_WIN:
       return {
