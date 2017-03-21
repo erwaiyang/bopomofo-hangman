@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Input, Button } from 'semantic-ui-react';
-import { guess } from '../actions/gameActions';
+import { guess, showAnswer } from '../actions/gameActions';
 
 class Controls extends Component {
   constructor(props) {
@@ -22,6 +22,9 @@ class Controls extends Component {
       this.onGuessClick();
     }
   }
+  onShowAnswerClick = () => {
+    this.props.showAnswer();
+  }
   render() {
     return (
       <div id="controls">
@@ -35,6 +38,7 @@ class Controls extends Component {
         <Button primary onClick={this.onGuessClick}>猜注音</Button>
         <Input label="答案" placeholder="eg. 哈囉世界" />
         <Button secondary>直接猜！</Button>
+        <Button color="red" onClick={this.onShowAnswerClick}>顯示答案</Button>
       </div>
     );
   }
@@ -42,6 +46,7 @@ class Controls extends Component {
 
 Controls.propTypes = {
   guess: PropTypes.func.isRequired,
+  showAnswer: PropTypes.func.isRequired,
 };
 
-export default connect(null, { guess })(Controls);
+export default connect(null, { guess, showAnswer })(Controls);

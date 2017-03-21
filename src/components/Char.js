@@ -20,10 +20,10 @@ const StyledChar = styled.div`
   }
 `;
 
-function Char({ char, record, original }) {
+function Char({ char, record, original, showAnswer }) {
   return (
     <StyledChar>
-      <div className="char">?</div>
+      <div className="char">{ showAnswer ? char : '？' }</div>
       <div className="bopomofos">
         {
           record

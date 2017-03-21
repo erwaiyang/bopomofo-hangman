@@ -3,6 +3,7 @@ import {
   YOU_WIN,
   YOU_LOST,
   GUESS,
+  SHOW_ANSWER,
 } from '../constants/actionTypes';
 
 export function getStarted() {
@@ -27,5 +28,11 @@ export function guess(bopomofo) {
   return {
     type: GUESS,
     bopomofo,
+  };
+}
+
+export function showAnswer() {
+  return {
+    type: SHOW_ANSWER,
   };
 }

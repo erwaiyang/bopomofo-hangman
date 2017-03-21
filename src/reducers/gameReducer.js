@@ -5,6 +5,7 @@ import {
   YOU_WIN,
   YOU_LOST,
   GUESS,
+  SHOW_ANSWER,
 } from '../constants/actionTypes';
 import testList from '../../data/testList';
 
@@ -13,6 +14,7 @@ export const initialization = {
   step: 0,
   question: null,
   guessed: [],
+  showAnswer: false,
 };
 
 export default function gameReducer(state = initialization, action) {
@@ -46,6 +48,11 @@ export default function gameReducer(state = initialization, action) {
         },
         guessed: [...state.guessed, action.bopomofo],
         step: newRecord === state.question.bopomofoGuessRecord ? (state.step + 1) : state.step,
+      };
+    case SHOW_ANSWER:
+      return {
+        ...state,
+        showAnswer: true,
       };
     default:
       return state;

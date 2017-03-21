@@ -5,7 +5,7 @@ import Char from './Char';
 import Hangman from './Hangman';
 import Controls from './Controls';
 
-function Game({ answer, bopomofoString, bopomofoGuessRecord }) {
+function Game({ answer, bopomofoString, bopomofoGuessRecord, showAnswer }) {
   const record = bopomofoGuessRecord.split(',');
   return (
     <div id="game">
@@ -18,6 +18,7 @@ function Game({ answer, bopomofoString, bopomofoGuessRecord }) {
                 char={answer[index]}
                 record={record[index]}
                 original={item}
+                showAnswer={showAnswer}
               />)
           }
         </div>
@@ -32,13 +33,15 @@ Game.propTypes = {
   answer: PropTypes.string.isRequired,
   bopomofoString: PropTypes.string.isRequired,
   bopomofoGuessRecord: PropTypes.string.isRequired,
+  showAnswer: PropTypes.bool.isRequired,
 };
 
-function mapStateToProps({ gameStore: { question } }) {
+function mapStateToProps({ gameStore: { question, showAnswer } }) {
   return {
     answer: question.answer,
     bopomofoGuessRecord: question.bopomofoGuessRecord,
     bopomofoString: question.bopomofoString,
+    showAnswer,
   };
 }
 
