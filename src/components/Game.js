@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
-import BopomofoFrame from './BopomofoFrame';
+import Char from './Char';
 
 function Game({ bopomofo }) {
   return (
     <div id="game">
       <Container>
         {
-          bopomofo.map((item, index) => <BopomofoFrame key={index} bopomofos={item} />)
+          bopomofo.map((item, index) => <Char key={index} bopomofos={item} />)
         }
       </Container>
     </div>

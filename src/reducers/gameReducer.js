@@ -10,6 +10,7 @@ export const initialization = {
   status: 'INIT',
   step: 0,
   question: null,
+  guessed: [],
   incorrect: [],
 };
 
@@ -21,6 +22,7 @@ export default function gameReducer(state = initialization, action) {
         status: GET_STARTED,
         step: initialization.step,
         incorrect: initialization.incorrect,
+        guessed: initialization.guessed,
         question: sample(testList),
       };
     case YOU_WIN:
