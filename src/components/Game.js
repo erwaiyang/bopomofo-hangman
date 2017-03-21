@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import Char from './Char';
 import Hangman from './Hangman';
+import Controls from './Controls';
 
 function Game({ answer, bopomofo }) {
   return (
@@ -19,6 +20,7 @@ function Game({ answer, bopomofo }) {
           }
         </div>
         <Hangman />
+        <Controls />
       </Container>
     </div>
   );
