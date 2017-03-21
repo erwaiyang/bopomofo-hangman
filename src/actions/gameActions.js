@@ -2,6 +2,7 @@ import {
   GET_STARTED,
   YOU_WIN,
   YOU_LOST,
+  GUESS,
 } from '../constants/actionTypes';
 
 export function getStarted() {
@@ -19,5 +20,12 @@ export function youWin() {
 export function youLost() {
   return {
     type: YOU_LOST,
+  };
+}
+
+export function guess(bopomofo) {
+  return {
+    type: GUESS,
+    bopomofo,
   };
 }
