@@ -34,7 +34,7 @@ function Char({ char, record, original }) {
                 <BopomofoFrame
                   key={originalBopomofo.charAt(0).toString(16)}
                   b={b === '*' ? originalBopomofo : ' '}
-                  isAccent={indexOf(accents, originalBopomofo) > 0}
+                  isAccent={indexOf(accents, originalBopomofo) >= 0}
                 />
               );
             })
