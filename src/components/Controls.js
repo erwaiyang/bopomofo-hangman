@@ -17,10 +17,21 @@ class Controls extends Component {
       this.setState({ guess: '' });
     }
   };
+  onGuessKeydown = (e) => {
+    if (e.keyCode === 13) {
+      this.onGuessClick();
+    }
+  }
   render() {
     return (
       <div id="controls">
-        <Input label="注音" placeholder="eg. ㄅ,ㄆ,ˊ（二聲）" value={this.state.guess} onChange={this.onGuessChange} />
+        <Input
+          label="注音"
+          placeholder="eg. ㄅ,ㄆ,ˊ（二聲）"
+          value={this.state.guess}
+          onChange={this.onGuessChange}
+          onKeyDown={this.onGuessKeydown}
+        />
         <Button primary onClick={this.onGuessClick}>猜注音</Button>
         <Input label="答案" placeholder="eg. 哈囉世界" />
         <Button secondary>直接猜！</Button>
