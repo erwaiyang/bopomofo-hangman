@@ -12,4 +12,4 @@ const render = Component =>
     rootEl);
 
 render(Container);
-if (module.hot) module.hot.accept('./App', () => render(Container));
+if (module.hot) module.hot.accept('./Container', () => render(Container));
