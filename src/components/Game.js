@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import Char from './Char';
 
-function Game({ bopomofo }) {
+function Game({ answer, bopomofo }) {
   return (
     <div id="game">
       <Container>
         {
-          bopomofo.map((item, index) => <Char key={index} bopomofos={item} />)
+          answer.split('').map((char, index) =>
+            <Char
+              key={char.toString(16) + index}
+              char={char}
+              bopomofos={bopomofo[index]}
+            />)
         }
       </Container>
     </div>
@@ -16,12 +21,14 @@ function Game({ bopomofo }) {
 }
 
 Game.propTypes = {
+  answer: PropTypes.string.isRequired,
   bopomofo: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-function mapStateToProps({ gameStore }) {
+function mapStateToProps({ gameStore: { question } }) {
   return {
-    bopomofo: gameStore.question.bopomofo,
+    answer: question.answer,
+    bopomofo: question.bopomofo,
   };
 }
 
