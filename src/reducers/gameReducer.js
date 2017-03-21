@@ -13,7 +13,6 @@ export const initialization = {
   step: 0,
   question: null,
   guessed: [],
-  incorrect: [],
 };
 
 export default function gameReducer(state = initialization, action) {
