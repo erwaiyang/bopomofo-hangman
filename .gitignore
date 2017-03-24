@@ -3,3 +3,9 @@
 
 # modules directory
 node_modules
+
+# logs
+*.log
+
+# build
+dist

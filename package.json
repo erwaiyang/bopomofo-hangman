@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.hot.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "mocha"
   },

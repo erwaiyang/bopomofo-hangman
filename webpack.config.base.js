@@ -12,7 +12,7 @@ const vendor = [
 const output = {
   filename: '[name]-bundle.js',
   path: path.resolve(__dirname, 'dist'),
-  publicPath: '/static/',
+  publicPath: '/dist/',
 };
 
 const rules = [
