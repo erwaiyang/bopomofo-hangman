@@ -1,78 +1,31 @@
-const path = require('path');
 const webpack = require('webpack');
+const baseConfig = require('./webpack.config.base');
+
+const PORT = 4000;
 
 module.exports = {
   entry: {
-    vendor: [
-      'react',
-      'react-dom',
-      'redux',
-      'react-redux',
-      'redux-saga',
-    ],
+    vendor: baseConfig.entry.vendor,
     app: [
       'react-hot-loader/patch',
-      // activate HMR for React
-
-      'webpack-dev-server/client?http://localhost:4000',
-      // bundle the client for webpack-dev-server
-      // and connect to the provided endpoint
-
+      `webpack-dev-server/client?http://localhost:${PORT}`,
       'webpack/hot/only-dev-server',
-      // bundle the client for hot reloading
-      // only- means to only hot reload for successful updates
-
       './src/index.js',
-      // the entry point of our app
     ],
   },
-
-  output: {
-    filename: '[name]-bundle.js',
-    // the output bundle
-
-    path: path.resolve(__dirname, 'dist'),
-
-    publicPath: '/static/',
-    // necessary for HMR to know where to load the hot update chunks
-  },
-
+  output: baseConfig.output,
   devtool: 'cheap-module-source-map',
-
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        use: [
-          'babel-loader',
-        ],
-        exclude: /node_modules/,
-      },
-    ],
-  },
-
+  module: baseConfig.module,
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor-bundle.js',
-      minChunks: Infinity,
-    }),
+    ...baseConfig.plugins,
     new webpack.HotModuleReplacementPlugin(),
-    // enable HMR globally
     new webpack.NamedModulesPlugin(),
-    // prints more readable module names in the browser console on HMR updates
     new webpack.NoEmitOnErrorsPlugin(),
-    // do not emit compiled assets that include errors
   ],
-
   devServer: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 4000,
-
     historyApiFallback: true,
-    // respond to 404s with index.html
-
     hot: true,
-    // enable HMR on the server
   },
 };
