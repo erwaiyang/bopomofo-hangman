@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 const baseConfig = require('./webpack.config.base');
 
 module.exports = {
@@ -24,5 +26,8 @@ module.exports = {
       'process.env.NODE_ENV': '"production"',
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
+    new CopyWebpackPlugin([
+      { from: './index.html' },
+    ]),
   ],
 };
